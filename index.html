@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+       <div class="container">
+        <div class="wrapper">
+            <div class="left-section">
+                <div class="header">
+                    <div class="leaf-icon">🍃</div>
+                    <h1>Focus</h1>
+                    <p>Find your rhythm</p>
+                </div>
+ 
+                <div class="session-badge" id="sessionLabel">Work Session</div>
+ 
+                <div class="circle-container">
+                    <div class="circle-bg"></div>
+                    <svg class="progress-ring-svg" viewBox="0 0 200 200">
+                        <defs>
+                            <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color: #a8d5ca; stop-opacity: 1" />
+                                <stop offset="100%" style="stop-color: #8ac2de; stop-opacity: 1" />
+                            </linearGradient>
+                        </defs>
+                        <circle class="progress-ring progress-bg" cx="100" cy="100" r="90" />
+                        <circle class="progress-ring progress-fill" id="progressRing" cx="100" cy="100" r="90" 
+                                stroke-dasharray="565" stroke-dashoffset="565" />
+                    </svg>
+                    <div class="time-display" id="timer">25:00</div>
+                </div>
+ 
+                <div class="controls">
+                    <button id="startBtn">Start</button>
+                    <button id="reset">Reset</button>
+                    <button id="skip">Skip</button>
+                </div>
+            </div>
+ 
+            <div class="right-section">
+                <div class="insights-section">
+                    <div class="insights-title">Today's Progress</div>
+                    <div class="insights">
+                        <div class="insight-card">
+                            <div class="insight-label">Sessions</div>
+                            <div class="insight-value" id="sessionsCompleted">0</div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-label">Focus Time</div>
+                            <div class="insight-value" id="totalFocusTime">0m</div>
+                        </div>
+                    </div>
+                </div>
+ 
+                <div style="text-align: center; color: #5f8a85; font-size: 13px; letter-spacing: 1px;">
+                    <p style="margin-bottom: 12px;">💡 Pro Tips</p>
+                    <div style="background: rgba(168, 213, 202, 0.08); padding: 16px; border-radius: 12px; border: 1px solid rgba(168, 213, 202, 0.1);">
+                        <p style="margin-bottom: 10px; font-size: 13px;">🎯 Focus works best when</p>
+                        <ul style="text-align: left; font-size: 12px; line-height: 1.8; list-style: none;">
+                            <li>✓ Phone is away from you</li>
+                            <li>✓ Notifications are muted</li>
+                            <li>✓ You take breaks seriously</li>
+                            <li>✓ Room is quiet and clean</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
