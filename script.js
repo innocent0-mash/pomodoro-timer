@@ -1,6 +1,6 @@
-const WORK_TIME = 2 * 60;
-const SHORT_BREAK = (1 / 5) * 60;
-const LONG_BREAK = 1 * 60;
+const WORK_TIME = 30 * 60;
+const SHORT_BREAK = 5 * 60;
+const LONG_BREAK =  30* 60;
 
 let COUNTER = 0;
 let interval = null;
