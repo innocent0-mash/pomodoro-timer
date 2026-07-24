@@ -65,7 +65,7 @@ function start() {
     interval = setInterval(() => {
         if (time > 0) {
             time--;
-            btn.innerText = "<i class="fa-solid fa-stop" style="color: #ffffff;"></i>";
+            btn.innerHTML = '<i class="fa-solid fa-stop" style="color: #ffffff;"></i>';
             updateTimer();
         }
         else {
@@ -80,7 +80,7 @@ function start() {
 let pause = () => {
 
     clearInterval(interval);
-    btn.innerText = "<i class="fa-solid fa-play" style="color: #ffffff;"></i>";
+    btn.innerHTML = '<i class="fa-solid fa-play" style="color: #ffffff;"></i>';
     runing = false;
 };
 
