@@ -3,26 +3,29 @@ let SHORT_BREAK = 5 * 60;
 let LONG_BREAK = 25 * 60;
 let COUNTER = 0;
 let interval = null;
-let runing = false;
+let runing = false; 
 let time = WORK_TIME;
 let isworkTime = true;
 let isbreakTime = false;
 let currentSession = "work";
 
-let timer = document.getElementById("timer");
-let btn = document.getElementById("startBtn");
-let reset = document.getElementById("reset");
-let skip = document.getElementById("skip");
-let mode = document.getElementById("sessionLabel");
-let study = document.getElementById("study");
-let gym = document.getElementById("gym");
-let focus = document.getElementById("focus");
+const timer = document.getElementById("timer");
+const btn = document.getElementById("startBtn");
+const reset = document.getElementById("reset");
+const skip = document.getElementById("skip");
+const mode = document.getElementById("sessionLabel");
+const study = document.getElementById("study");
+const gym = document.getElementById("gym");
+const focus = document.getElementById("focus");
+const progressRing = document.getElementById("progressRing");
 const workSlider = document.getElementById("workSlider");
 const workValue = document.getElementById("workValue");
 const shortBreakSlider = document.getElementById("shortBreakSlider");
 const shortBreakValue = document.getElementById("shortBreakValue");
 const longBreakSlider = document.getElementById("longBreakSlider");
 const longBreakValue = document.getElementById("longBreakValue");
+const ringRadius = progressRing ? Number(progressRing.getAttribute("r")) : 0;
+const ringCircumference = 2 * Math.PI * ringRadius;
 
 function syncSlider(sliderElement, valueElement, seconds) {
     if (!sliderElement || !valueElement) {
@@ -40,6 +43,48 @@ function syncAllSliders() {
     syncSlider(longBreakSlider, longBreakValue, LONG_BREAK);
 }
 
+function getCurrentSessionDuration() {
+    if (currentSession === "shortBreak") {
+        return SHORT_BREAK;
+    }
+
+    if (currentSession === "longBreak") {
+        return LONG_BREAK;
+    }
+
+    return WORK_TIME;
+}
+
+function updateSessionLabel() {
+    if (!mode) {
+        return;
+    }
+
+    if (currentSession === "shortBreak") {
+        mode.innerText = "Short Break";
+        return;
+    }
+
+    if (currentSession === "longBreak") {
+        mode.innerText = "Long Break";
+        return;
+    }
+
+    mode.innerText = "Work Session";
+}
+
+function updateProgressRing() {
+    if (!progressRing || ringCircumference === 0) {
+        return;
+    }
+
+    const totalTime = getCurrentSessionDuration();
+    const progress = totalTime > 0 ? time / totalTime : 0;
+    const dashOffset = ringCircumference * (1 - Math.max(0, Math.min(progress, 1)));
+
+    progressRing.style.strokeDasharray = `${ringCircumference}`;
+    progressRing.style.strokeDashoffset = `${dashOffset}`;
+}
 
 let worktime = () => {
     clearInterval(interval);
@@ -56,14 +101,15 @@ let shortBreak = () => {
     currentSession = "shortBreak";
     time = SHORT_BREAK;
     updateTimer();
+    start();
 };
 let longBreak = () => {
-    COUNTER = 0;
     isworkTime = false;
     isbreakTime = true;
     currentSession = "longBreak";
     time = LONG_BREAK;
     updateTimer();
+    start();
 }
 
 let stud = () => {
@@ -101,23 +147,23 @@ function updateTimer() {
     second = String(second).padStart(2, '0');
     // console.log(`${minutes}:${second}`);
     timer.innerText = `${minutes}:${second}`;
+    updateSessionLabel();
+    updateProgressRing();
 }
 updateTimer();
 syncAllSliders();
 
 function switchMode() {
     if (isworkTime) {
-        COUNTER++;
-        if (COUNTER >= 5) {
-            longBreak();
-            // mode.innerText = "Relax Time";
-        } else {
+        COUNTER = (COUNTER + 1) % 2;
+
+        if (COUNTER === 1) {
             shortBreak();
-            // mode.innerText = "Break Time";
+        } else {
+            longBreak();
         }
     } else {
         worktime();
-        // mode.innerText = "Foucs Time"
     }
 };
 
@@ -158,13 +204,15 @@ reset.addEventListener("click", () => {
     pause();
     COUNTER = 0;
     runing = false;
+    currentSession = "work";
+    isworkTime = true;
+    isbreakTime = false;
     time = WORK_TIME;
     updateTimer();
 })
 
 skip.addEventListener("click", () => {
     pause();
-    COUNTER++;
     if (isworkTime == true) {
         switchMode();
     }

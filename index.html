@@ -11,145 +11,154 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="wrapper">
-        <div class="left-section">
-          <div class="header">
-            <div class="leaf-icon">🍃</div>
-            <h1>Focus</h1>
-            <p>Find your rhythm</p>
-          </div>
-
-          <div class="session-badge" id="sessionLabel">Work Session</div>
-
-          <div class="circle-container">
-            <div class="circle-bg"></div>
-            <svg class="progress-ring-svg" viewBox="0 0 200 200">
-              <defs>
-                <linearGradient
-                  id="progressGradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop
-                    offset="0%"
-                    style="stop-color: #a8d5ca; stop-opacity: 1"
-                  />
-                  <stop
-                    offset="100%"
-                    style="stop-color: #8ac2de; stop-opacity: 1"
-                  />
-                </linearGradient>
-              </defs>
-              <circle
-                class="progress-ring progress-bg"
-                cx="100"
-                cy="100"
-                r="90"
-              />
-              <circle
-                class="progress-ring progress-fill"
-                id="progressRing"
-                cx="100"
-                cy="100"
-                r="90"
-                stroke-dasharray="565"
-                stroke-dashoffset="565"
-              />
-            </svg>
-            <div class="time-display" id="timer">25:00</div>
-          </div>
-
-          <div class="controls">
-            <button id="startBtn">
-              <i class="fa-solid fa-play" style="color: #ffffff"></i>
-            </button>
-            <button id="reset">
-              <i
-                class="fa-solid fa-rotate-left"
-                style="color: rgba(6, 197, 149, 0.628)"
-              ></i>
-            </button>
-            <button id="skip">
-              <i
-                class="fa-solid fa-forward"
-                style="color: rgb(6, 197, 149, 0.628)"
-              ></i>
-            </button>
-          </div>
+    <div class="page-shell">
+      <header class="site-header">
+        <div>
+          <p class="site-kicker">Pomodoro Flow</p>
+          <h1>Focus Timer Dashboard</h1>
         </div>
+        <p class="site-subtitle">Build calm work sessions with intentional breaks.</p>
+      </header>
 
-        <div class="right-section">
-          <div class="mode-section">
-            <div class="mode-titel">Modes</div>
-            <div class="modes">
-              <div class="mode-card" id="study">
-                <div class="mode-label">
-                  <i
-                    class="fa-solid fa-book-open-reader"
-                    style="color: rgb(243, 242, 249)"
-                  ></i>
-                </div>
-                <div class="mode-value"></div>
-              </div>
-              <div class="mode-card" id="gym">
-                <div class="mode-label">
-                  <i
-                    class="fa-solid fa-dumbbell"
-                    style="color: rgb(243, 242, 249)"
-                  ></i>
-                </div>
-                <div class="mode-value"></div>
-              </div>
-              <div class="mode-card" id="focus">
-                <div class="mode-label">
-                  <img class="image" src="assets\img\mastery.png" alt="focus" />
-                </div>
-                <div class="mode-value"></div>
-              </div>
+      <div class="container">
+        <div class="wrapper">
+          <div class="left-section">
+            <div class="header">
+              <div class="leaf-icon">🍃</div>
+              <h1>Focus</h1>
+              <p>Find your rhythm</p>
+            </div>
+
+            <div class="session-badge" id="sessionLabel">Work Session</div>
+
+            <div class="circle-container">
+              <div class="circle-bg"></div>
+              <svg class="progress-ring-svg" viewBox="0 0 200 200">
+                <defs>
+                  <linearGradient
+                    id="progressGradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%"
+                  >
+                    <stop
+                      offset="0%"
+                      style="stop-color: #a8d5ca; stop-opacity: 1"
+                    />
+                    <stop
+                      offset="100%"
+                      style="stop-color: #8ac2de; stop-opacity: 1"
+                    />
+                  </linearGradient>
+                </defs>
+                <circle
+                  class="progress-ring progress-bg"
+                  cx="100"
+                  cy="100"
+                  r="90"
+                />
+                <circle
+                  class="progress-ring progress-fill"
+                  id="progressRing"
+                  cx="100"
+                  cy="100"
+                  r="90"
+                  stroke-dasharray="565"
+                  stroke-dashoffset="565"
+                />
+              </svg>
+              <div class="time-display" id="timer">25:00</div>
+            </div>
+
+            <div class="controls">
+              <button id="startBtn">
+                <i class="fa-solid fa-play" style="color: #ffffff"></i>
+              </button>
+              <button id="reset">
+                <i
+                  class="fa-solid fa-rotate-left"
+                  style="color: rgba(6, 197, 149, 0.628)"
+                ></i>
+              </button>
+              <button id="skip">
+                <i
+                  class="fa-solid fa-forward"
+                  style="color: rgb(6, 197, 149, 0.628)"
+                ></i>
+              </button>
             </div>
           </div>
-          <div class="duration-section">
-            <div class="mode-titel">Durations</div>
 
-            <div class="slider-group">
-              <div class="slider-header">
-                <label for="workSlider">Work Time</label>
-                <span id="workValue">25 min</span>
+          <div class="right-section">
+            <div class="mode-section">
+              <div class="mode-titel"> Preset Modes</div>
+              <div class="modes">
+                <div class="mode-card" id="study">
+                  <div class="mode-label">
+                    <i
+                      class="fa-solid fa-book-open-reader"
+                      style="color: rgb(243, 242, 249)"
+                    ></i>
+                  </div>
+                  <div class="mode-value"></div>
+                </div>
+                <div class="mode-card" id="gym">
+                  <div class="mode-label">
+                    <i
+                      class="fa-solid fa-dumbbell"
+                      style="color: rgb(243, 242, 249)"
+                    ></i>
+                  </div>
+                  <div class="mode-value"></div>
+                </div>
+                <div class="mode-card" id="focus">
+                  <div class="mode-label">
+                    <img class="image" src="assets\img\mastery.png" alt="focus" />
+                  </div>
+                  <div class="mode-value"></div>
+                </div>
               </div>
-              <input type="range" id="workSlider" min="1" max="90" value="25" />
             </div>
+            <div class="duration-section">
+              <div class="mode-titel"> Custom Durations</div>
 
-            <div class="slider-group">
-              <div class="slider-header">
-                <label for="shortBreakSlider">Short Break</label>
-                <span id="shortBreakValue">5 min</span>
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="workSlider">Work Time</label>
+                  <span id="workValue">25 min</span>
+                </div>
+                <input type="range" id="workSlider" min="1" max="90" value="25" />
               </div>
-              <input
-                type="range"
-                id="shortBreakSlider"
-                min="1"
-                max="30"
-                value="5"
-              />
-            </div>
 
-            <div class="slider-group">
-              <div class="slider-header">
-                <label for="longBreakSlider">Long Break</label>
-                <span id="longBreakValue">25 min</span>
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="shortBreakSlider">Short Break</label>
+                  <span id="shortBreakValue">5 min</span>
+                </div>
+                <input
+                  type="range"
+                  id="shortBreakSlider"
+                  min="1"
+                  max="30"
+                  value="5"
+                />
               </div>
-              <input
-                type="range"
-                id="longBreakSlider"
-                min="1"
-                max="60"
-                value="25"
-              />
+
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="longBreakSlider">Long Break</label>
+                  <span id="longBreakValue">25 min</span>
+                </div>
+                <input
+                  type="range"
+                  id="longBreakSlider"
+                  min="1"
+                  max="60"
+                  value="25"
+                />
+              </div>
             </div>
-          </div>
           <!-- <div class="insights-section">
             <div class="insights-title">Today's Progress</div>
             <div class="insights">
@@ -164,43 +173,48 @@
             </div>
           </div> -->
 
-          <div
-            style="
-              text-align: center;
-              color: #5f8a85;
-              font-size: 13px;
-              letter-spacing: 1px;
-            "
-          >
-            <p style="margin-bottom: 12px">💡 Pro Tips</p>
             <div
               style="
-                background: rgba(168, 213, 202, 0.08);
-                padding: 16px;
-                border-radius: 12px;
-                border: 1px solid rgba(168, 213, 202, 0.1);
+                text-align: center;
+                color: #5f8a85;
+                font-size: 13px;
+                letter-spacing: 1px;
               "
             >
-              <p style="margin-bottom: 10px; font-size: 13px">
-                🎯 Focus works best when
-              </p>
-              <ul
+              <p style="margin-bottom: 12px">💡 Pro Tips</p>
+              <div
                 style="
-                  text-align: left;
-                  font-size: 12px;
-                  line-height: 1.8;
-                  list-style: none;
+                  background: rgba(168, 213, 202, 0.08);
+                  padding: 16px;
+                  border-radius: 12px;
+                  border: 1px solid rgba(168, 213, 202, 0.1);
                 "
               >
-                <li>✓ Phone is away from you</li>
-                <li>✓ Notifications are muted</li>
-                <li>✓ You take breaks seriously</li>
-                <li>✓ Room is quiet and clean</li>
-              </ul>
+                <p style="margin-bottom: 10px; font-size: 13px">
+                  🎯 Focus works best when
+                </p>
+                <ul
+                  style="
+                    text-align: left;
+                    font-size: 12px;
+                    line-height: 1.8;
+                    list-style: none;
+                  "
+                >
+                  <li>✓ Phone is away from you</li>
+                  <li>✓ Notifications are muted</li>
+                  <li>✓ You take breaks seriously</li>
+                  <li>✓ Room is quiet and clean</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <footer class="site-footer">
+        <p>Built with ❤️ Raunak</p>
+      </footer>
     </div>
 
     <script src="script.js"></script>

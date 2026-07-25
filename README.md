@@ -43,32 +43,19 @@ pomodoro-timer/
 
 ## 🎯 Future Improvements
 
-* [ ] Custom work and break durations
+* [x] Custom work and break durations
 * [ ] User-selectable number of rounds
 * [ ] Sound notification
 * [ ] Browser notifications
 * [ ] Dark/Light theme
-* [ ] Progress ring animation
+* [x] Progress ring animation
 * [ ] Daily statistics
 * [ ] Local Storage support
 * [ ] Keyboard shortcuts
 * [ ] Progressive Web App (PWA)
-* [ ] Mobile optimization
+* [x] Mobile optimization
 
 ---
-
-
-## 🤝 Contributing
-
-Suggestions and improvements are welcome.
-
-1. Fork the repository
-2. Create a new branch
-3. Make your changes
-4. Submit a Pull Request
-
----
-
 ## 📄 License
 
 This project is licensed under the MIT License.
