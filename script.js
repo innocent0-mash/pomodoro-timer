@@ -1,4 +1,4 @@
-let WORK_TIME = 30 * 60;
+let WORK_TIME = 25 * 60;
 let SHORT_BREAK = 5 * 60;
 let LONG_BREAK = 25 * 60;
 let COUNTER = 0;
@@ -7,6 +7,7 @@ let runing = false;
 let time = WORK_TIME;
 let isworkTime = true;
 let isbreakTime = false;
+let currentSession = "work";
 
 let timer = document.getElementById("timer");
 let btn = document.getElementById("startBtn");
@@ -16,11 +17,35 @@ let mode = document.getElementById("sessionLabel");
 let study = document.getElementById("study");
 let gym = document.getElementById("gym");
 let focus = document.getElementById("focus");
+const workSlider = document.getElementById("workSlider");
+const workValue = document.getElementById("workValue");
+const shortBreakSlider = document.getElementById("shortBreakSlider");
+const shortBreakValue = document.getElementById("shortBreakValue");
+const longBreakSlider = document.getElementById("longBreakSlider");
+const longBreakValue = document.getElementById("longBreakValue");
+
+function syncSlider(sliderElement, valueElement, seconds) {
+    if (!sliderElement || !valueElement) {
+        return;
+    }
+
+    const minutes = Math.floor(seconds / 60);
+    sliderElement.value = minutes;
+    valueElement.textContent = `${minutes} min`;
+}
+
+function syncAllSliders() {
+    syncSlider(workSlider, workValue, WORK_TIME);
+    syncSlider(shortBreakSlider, shortBreakValue, SHORT_BREAK);
+    syncSlider(longBreakSlider, longBreakValue, LONG_BREAK);
+}
+
 
 let worktime = () => {
     clearInterval(interval);
     isworkTime = true;
     isbreakTime = false;
+    currentSession = "work";
     time = WORK_TIME;
     updateTimer();
 }
@@ -28,6 +53,7 @@ let shortBreak = () => {
     clearInterval(interval);
     isworkTime = false;
     isbreakTime = true;
+    currentSession = "shortBreak";
     time = SHORT_BREAK;
     updateTimer();
 };
@@ -35,6 +61,7 @@ let longBreak = () => {
     COUNTER = 0;
     isworkTime = false;
     isbreakTime = true;
+    currentSession = "longBreak";
     time = LONG_BREAK;
     updateTimer();
 }
@@ -44,6 +71,7 @@ let stud = () => {
     SHORT_BREAK = 10 * 60;
     LONG_BREAK = 25 * 60;
     time = WORK_TIME;
+    syncAllSliders();
     updateTimer();
 }
 let gy = () => {
@@ -51,6 +79,7 @@ let gy = () => {
     SHORT_BREAK = 5 * 60;
     LONG_BREAK = 20 * 60;
     time = WORK_TIME;
+    syncAllSliders();
 
     updateTimer();
 
@@ -60,6 +89,7 @@ let fcus = () => {
     SHORT_BREAK = 10 * 60;
     LONG_BREAK = 30 * 60;
     time = WORK_TIME;
+    syncAllSliders();
     updateTimer();
 
 }
@@ -73,6 +103,7 @@ function updateTimer() {
     timer.innerText = `${minutes}:${second}`;
 }
 updateTimer();
+syncAllSliders();
 
 function switchMode() {
     if (isworkTime) {
@@ -146,3 +177,52 @@ skip.addEventListener("click", () => {
 study.addEventListener("click", stud);
 gym.addEventListener("click", gy);
 focus.addEventListener("click", fcus);
+
+function setupSlider(sliderElement, valueElement, maxValue, onChange) {
+    if (!sliderElement || !valueElement) {
+        return;
+    }
+
+    sliderElement.addEventListener("input", () => {
+        let value = Number(sliderElement.value);
+
+        if (value < 1) {
+            value = 1;
+        }
+
+        if (value > maxValue) {
+            value = maxValue;
+        }
+
+        sliderElement.value = value;
+        valueElement.textContent = `${value} min`;
+        onChange(value);
+    });
+}
+
+setupSlider(workSlider, workValue, 90, (value) => {
+    WORK_TIME = value * 60;
+
+    if (isworkTime && !runing) {
+        time = WORK_TIME;
+        updateTimer();
+    }
+});
+
+setupSlider(shortBreakSlider, shortBreakValue, 30, (value) => {
+    SHORT_BREAK = value * 60;
+
+    if (currentSession === "shortBreak" && !runing) {
+        time = SHORT_BREAK;
+        updateTimer();
+    }
+});
+
+setupSlider(longBreakSlider, longBreakValue, 60, (value) => {
+    LONG_BREAK = value * 60;
+
+    if (currentSession === "longBreak" && !runing) {
+        time = LONG_BREAK;
+        updateTimer();
+    }
+});
