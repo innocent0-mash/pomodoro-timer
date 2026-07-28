@@ -7,7 +7,7 @@
 body {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: stretch;
   background: linear-gradient(135deg, #f5f9f7 0%, #e8f1f0 50%, #e3eef0 100%);
   color: #2c4a47;
@@ -27,8 +27,6 @@ body {
 .site-header,
 .site-footer {
   background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 20px;
   backdrop-filter: blur(20px);
   box-shadow: 0 10px 30px rgba(44, 74, 71, 0.06);
   position: relative;
@@ -41,6 +39,9 @@ body {
   align-items: end;
   gap: 20px;
   padding: 24px 28px;
+  position: sticky;
+  top: 0px;
+  z-index: 20;
 }
 
 .site-header::before,
@@ -67,12 +68,12 @@ body {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #5f8a85;
-  margin-bottom: 8px;
-  font-weight: 700;
+  margin-bottom: 2px;
+  font-weight: 500;
 }
 
 .site-header h1 {
-  font-size: 32px;
+  font-size: 25px;
   letter-spacing: 0.6px;
   margin: 0;
 }
